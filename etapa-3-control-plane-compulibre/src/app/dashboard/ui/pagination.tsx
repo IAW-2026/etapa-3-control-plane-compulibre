@@ -32,16 +32,24 @@ function createPageUrl({
   page,
   query,
   basePath,
+  extraParams = {},
 }: {
   page: number;
   query: string;
   basePath: string;
+  extraParams?: Record<string, string | undefined>;
 }) {
   const params = new URLSearchParams({ page: page.toString() });
 
   if (query) {
     params.set("query", query);
   }
+
+  Object.entries(extraParams).forEach(([key, value]) => {
+    if (value) {
+      params.set(key, value);
+    }
+  });
 
   return `${basePath}?${params.toString()}`;
 }
@@ -80,11 +88,13 @@ export function Pagination({
   totalPages,
   query = "",
   basePath,
+  extraParams = {},
 }: {
   currentPage: number;
   totalPages: number;
   query?: string;
   basePath: string;
+  extraParams?: Record<string, string | undefined>;
 }) {
   if (totalPages <= 1) {
     return null;
@@ -100,6 +110,7 @@ export function Pagination({
           page: currentPage - 1,
           query,
           basePath,
+          extraParams,
         })}
         isDisabled={currentPage <= 1}
       />
@@ -127,6 +138,7 @@ export function Pagination({
                 page: pageNumber,
                 query,
                 basePath,
+                extraParams,
               })}
               className={[
                 "inline-flex h-9 w-9 items-center justify-center rounded-lg border text-sm font-semibold transition",
@@ -147,6 +159,7 @@ export function Pagination({
           page: currentPage + 1,
           query,
           basePath,
+          extraParams,
         })}
         isDisabled={currentPage >= totalPages}
       />
