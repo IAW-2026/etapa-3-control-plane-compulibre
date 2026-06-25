@@ -65,11 +65,7 @@ export function TicketsTable({ tickets }: { tickets: Ticket[] }) {
                     <td className="px-3 py-4 text-right md:px-5">
                       {canClose ? (
                         <CloseTicketButton ticketId={ticket.id} />
-                      ) : (
-                        <span className="text-sm font-semibold text-gray-400">
-                          Cerrado
-                        </span>
-                      )}
+                      ) : null}
                     </td>
                   </tr>
                 );
