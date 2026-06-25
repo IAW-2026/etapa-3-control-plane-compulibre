@@ -9,6 +9,7 @@ import {
   ShoppingBagIcon,
   ShoppingCartIcon,
   TicketIcon,
+  TruckIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -56,7 +57,7 @@ const navGroups: NavGroup[] = [
   },
   {
     name: "Shipping",
-    icon: MapPinIcon,
+    icon: TruckIcon,
     items: [{ name: "Envios", href: "/dashboard/envios", icon: MapPinIcon }],
   },
 ];
